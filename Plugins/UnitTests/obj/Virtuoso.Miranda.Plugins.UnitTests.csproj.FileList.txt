@@ -1,8 +1,0 @@
-obj\Debug\ResolveAssemblyReference.cache
-obj\Debug\Virtuoso.Miranda.Plugins.UnitTests.Here.ico
-.\bin\Debug\Virtuoso.Miranda.Plugins.UnitTests.dll
-.\bin\Debug\Virtuoso.Miranda.Plugins.UnitTests.pdb
-.\bin\Debug\Hyphen.dll
-.\bin\Debug\Hyphen.pdb
-obj\Debug\Virtuoso.Miranda.Plugins.UnitTests.dll
-obj\Debug\Virtuoso.Miranda.Plugins.UnitTests.pdb
