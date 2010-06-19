@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9,00"
+	Name="Hyphen.Mini"
+	ProjectGUID="{6269DCEE-A3B7-46E2-85B1-E09E8C6C1BAD}"
+	RootNamespace="ILTest"
+	Keyword="MakeFileProj"
+	TargetFrameworkVersion="131072"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="E:\Root\Tomášovo\Development\C++\Miranda\BINARIES\LatestStable\Plugins"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="C:\Windows\Microsoft.NET\Framework\v2.0.50727\ilasm Mini.il /dll /pdb /key:Virtuoso.Hyphen.Mini.snk /output:bin\Hyphen.Mini.dll&#x0D;&#x0A;REM copy bin\*.* &quot;$(OutDir)\*.*&quot;"
+				ReBuildCommandLine=""
+				CleanCommandLine="cd bin\$(ConfigurationName)&#x0D;&#x0A;del *.dll&#x0D;&#x0A;del *.pdb"
+				Output="$(OutDir)\Mini.dll"
+				PreprocessorDefinitions="WIN32;_DEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="E:\Root\Tomášovo\Development\C++\Miranda\BINARIES\LatestStable\Plugins"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="C:\Windows\Microsoft.NET\Framework\v2.0.50727\ilasm Mini.il /dll /pdb /key:Virtuoso.Hyphen.Mini.snk /output:bin\Hyphen.Mini.dll&#x0D;&#x0A;REM copy bin\*.* &quot;$(OutDir)\*.*&quot;"
+				ReBuildCommandLine=""
+				CleanCommandLine="cd bin\$(ConfigurationName)&#x0D;&#x0A;del *.dll&#x0D;&#x0A;del *.pdb"
+				Output="$(OutDir)\Mini.dll"
+				PreprocessorDefinitions="WIN32;NDEBUG"
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<File
+			RelativePath=".\bin\Hyphen.Mini.dll"
+			>
+		</File>
+		<File
+			RelativePath=".\Mini.il"
+			>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
