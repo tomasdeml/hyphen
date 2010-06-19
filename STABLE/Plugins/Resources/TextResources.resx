@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Balloon_Text_FusionFinished" xml:space="preserve">
+    <value>Hyphen plugins are enabled and ready to use.</value>
+  </data>
+  <data name="ExceptionMsg_CallInvalidForUnknownNetworkProtocol" xml:space="preserve">
+    <value>This operation is not supported for an unknown protocol.</value>
+  </data>
+  <data name="ExceptionMsg_CannotDetectMirandaDefaultStringEncoding" xml:space="preserve">
+    <value>Cannot detect the default string encoding used in Miranda.</value>
+  </data>
+  <data name="ExceptionMsg_CannotFinishMarshaling" xml:space="preserve">
+    <value>An internal error occurred in the PluginManager while working with unmanaged memory. Contact Hyphen vendor, please.</value>
+  </data>
+  <data name="ExceptionMsg_CannotOpenHomePage" xml:space="preserve">
+    <value>An error occurred while opening plugin home page.</value>
+  </data>
+  <data name="ExceptionMsg_ErrorWhileCallingMirandaService" xml:space="preserve">
+    <value>Cannot complete the service call. </value>
+  </data>
+  <data name="ExceptionMsg_ErrorWhileLoadingPlugins" xml:space="preserve">
+    <value>An error occurred while loading plugins.</value>
+  </data>
+  <data name="ExceptionMsg_Formatable1_AssemblyLoadError" xml:space="preserve">
+    <value>Cannot load plugin '{0}' - {1}</value>
+  </data>
+  <data name="ExceptionMsg_Formatable1_CannotLoadStringResolver" xml:space="preserve">
+    <value>Cannot load string resolver of type '{0}'. Check if there is a public default .ctor.</value>
+  </data>
+  <data name="ExceptionMsg_Formatable1_EventHookingFailed" xml:space="preserve">
+    <value>Failed hooking event '{0}'. Check event name.</value>
+  </data>
+  <data name="ExceptionMsg_Formatable1_ExplicitPluginLoadForbidden" xml:space="preserve">
+    <value>Cannot load plugin '{0}' - this plugin cannot be loaded automatically.</value>
+  </data>
+  <data name="ExceptionMsg_Formatable1_NoValidPluginCtorFound" xml:space="preserve">
+    <value>Cannot instantiate plugin type '{0}' - no valid constructor found.</value>
+  </data>
+  <data name="ExceptionMsg_Formatable1_ServiceFunctionCreationFailed" xml:space="preserve">
+    <value>Failed creating service function '{0}'.</value>
+  </data>
+  <data name="ExceptionMsg_Formatable1_UnauthorizedToInstantiatePlugin" xml:space="preserve">
+    <value>An error occurred while instantiating plugin type '{0}' - Hyphen is not allowed to load the plugin.</value>
+  </data>
+  <data name="ExceptionMsg_Formatable1_UnmanagedImageFound" xml:space="preserve">
+    <value>Cannot load plugin '{0}' - the image is not a valid CLI assembly.</value>
+  </data>
+  <data name="ExceptionMsg_Formatable2_ErrorWhileInstantiatingPlugin" xml:space="preserve">
+    <value>An error occurred while instantiating plugin type '{0}' - constructor threw an exception ({1}).</value>
+  </data>
+  <data name="ExceptionMsg_Formatable2_MirandaServiceReturnedFailure" xml:space="preserve">
+    <value>Cannot complete requested operation - Miranda service '{0}' returned {1}.</value>
+  </data>
+  <data name="ExceptionMsg_InternalErrorOccurred" xml:space="preserve">
+    <value>An internal error occurred in Hyphen. Please contact Hyphen's author.</value>
+  </data>
+  <data name="ExceptionMsg_InteropBufferNotLocked" xml:space="preserve">
+    <value>Cannot access the InteropBuffer without locking it before.</value>
+  </data>
+  <data name="ExceptionMsg_InteropBufferNotUnlocked" xml:space="preserve">
+    <value>Cannot perform the requested operation on a locked buffer.</value>
+  </data>
+  <data name="ExceptionMsg_InvalidCrossThreadInteropBufferUnlock" xml:space="preserve">
+    <value>Cannot unlock the buffer from a thread that does not locked it.</value>
+  </data>
+  <data name="ExceptionMsg_InvalidValueToTranslate" xml:space="preserve">
+    <value>Cannot translate this value - invalid value address or value format.</value>
+  </data>
+  <data name="ExceptionMsg_IOErrorOccurred" xml:space="preserve">
+    <value>Cannot load plugins - I/O error occurred. Check if you have permissions to access the 'Miranda\plugins\managed' directory.</value>
+  </data>
+  <data name="ExceptionMsg_PluginAlreadyInitialized" xml:space="preserve">
+    <value>Internal error - cannot reinitialize already initialized plugin.</value>
+  </data>
+  <data name="ExceptionMsg_PluginNotInitialized" xml:space="preserve">
+    <value>Cannot complete requested operation - this plugin has not been loaded yet.</value>
+  </data>
+  <data name="ExceptionMsg_SingletonNotInitializedYet" xml:space="preserve">
+    <value>Internal error occurred, cannot return requested information. The singleton has not been initialized yet.</value>
+  </data>
+  <data name="MsgBox_Caption_LoadUnloadPlugins" xml:space="preserve">
+    <value>Hyphen plugins</value>
+  </data>
+  <data name="MsgBox_Caption_LoadUnloadPluginsFailure" xml:space="preserve">
+    <value>Unable to load/unload plugins</value>
+  </data>
+  <data name="MsgBox_Caption_HyphenLoadFailed" xml:space="preserve">
+    <value>Unable to load Hyphen</value>
+  </data>
+  <data name="MsgBox_Formatable1_Text_LoadUnloadPluginsFailure" xml:space="preserve">
+    <value>An error occurred while loading/unloading managed plugins - {0}.</value>
+  </data>
+  <data name="MsgBox_Formatable1_Text_HyphenLoadFailed" xml:space="preserve">
+    <value>Unable to load Hyphen - {0}</value>
+  </data>
+  <data name="MsgBox_Text_LoadUnloadPlugins_Unload" xml:space="preserve">
+    <value>You are about to disable all Hyphen plugins. Are you sure?</value>
+  </data>
+  <data name="UI_Caption_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="UI_Label_Empty" xml:space="preserve">
+    <value>(no items / plugins loaded)</value>
+  </data>
+  <data name="UI_Label_Unknown" xml:space="preserve">
+    <value>&lt;unknown&gt;</value>
+  </data>
+  <data name="UI_Text_LoadUnloadPlugins" xml:space="preserve">
+    <value>Enable or disable plugins</value>
+  </data>
+  <data name="UI_Text_ShowManagedMainMenu" xml:space="preserve">
+    <value>Extra items...</value>
+  </data>
+  <data name="ExceptionMsg_Formatable1_UnableToSetUpPluginDescriptor" xml:space="preserve">
+    <value>Unable to initialize plugin descriptor - {0}</value>
+  </data>
+  <data name="ExceptionMsg_UnableToUnloadPluginMangerFromCurrentAppDomain" xml:space="preserve">
+    <value>Unable to unload plugin manager - cannot initiate shutdown from its own AppDomain.</value>
+  </data>
+  <data name="MsgBox_Formatable1_Caption_PluginUpdated" xml:space="preserve">
+    <value>Plugin {0} updated</value>
+  </data>
+  <data name="MsgBox_Text_PluginUpdated" xml:space="preserve">
+    <value>Hyphen plugins were updated. Do you wish to reload them?</value>
+  </data>
+  <data name="MsgBox_Text_PluginReloadComplete" xml:space="preserve">
+    <value>Hyphen plugins were successfully reloaded.</value>
+  </data>
+  <data name="MsgBox_Caption_PluginReloadComplete" xml:space="preserve">
+    <value>Plugins updated</value>
+  </data>
+  <data name="ExceptionMsg_ConfigurationFailed" xml:space="preserve">
+    <value>Unable to initialize Hyphen configuration. </value>
+  </data>
+  <data name="ExceptionMsg_MirandaRestartRequired" xml:space="preserve">
+    <value>Miranda must be restarted.</value>
+  </data>
+  <data name="MsgBox_Text_MirandaRestartRequired" xml:space="preserve">
+    <value>There was an error with Microsoft.net configuration files. These files are critical for Hyphen execution. The problem was corrected but Miranda must be restarted to apply changes.</value>
+  </data>
+  <data name="ExceptionMsg_InvalidFusionContext" xml:space="preserve">
+    <value>Invalid fusion context.</value>
+  </data>
+  <data name="ExceptionMsg_PluginManagerAlreadyInitialized" xml:space="preserve">
+    <value>Already initialized.</value>
+  </data>
+  <data name="MsgBox_Formatable2_Text_PluginError" xml:space="preserve">
+    <value>An error occurred in the {1} plugin - {2}{0}{0}Press OK to disable the plugin, otherwise press Cancel.</value>
+  </data>
+  <data name="ExceptionMsg_Formatable2_RuntimeVersionNotAvailable" xml:space="preserve">
+    <value>Plugin {0} requires {1} but this version is not available, the plugin cannot be loaded. Please download the latest version.</value>
+  </data>
+  <data name="MsgBox_Caption_RuntimeVersionNotAvailable" xml:space="preserve">
+    <value>Runtime version problem</value>
+  </data>
+  <data name="ExceptionMsg_UnableToLoadConfiguration_StorageError" xml:space="preserve">
+    <value>An error occurred while working with the Configuration Storage to load configuration.</value>
+  </data>
+  <data name="ExceptionMsg_UnableToSaveConfiguration_StorageError" xml:space="preserve">
+    <value>An error occurred while working with the Configuration Storage to save configuration.</value>
+  </data>
+  <data name="ExceptionMsg_MirandaContextNotAvailable" xml:space="preserve">
+    <value>Miranda context has not been initialized yet. The context will be initialialized in the Load export, until then, context calls are not supported.</value>
+  </data>
+  <data name="UI_Caption_Configure" xml:space="preserve">
+    <value>Configure </value>
+  </data>
+  <data name="MsgBox_Caption_NoOptionsAvailable" xml:space="preserve">
+    <value>No options available</value>
+  </data>
+  <data name="MsgBox_Text_NoOptionsAvailable" xml:space="preserve">
+    <value>This plugin has no options to configure.</value>
+  </data>
+  <data name="UI_Label_SelectPluginToDisplayDescr" xml:space="preserve">
+    <value>(select a plugin)</value>
+  </data>
+  <data name="ExceptionMsg_CannotRegisterBuiltinProtocol" xml:space="preserve">
+    <value>Cannot register/unregister builtin protocol. Only custom protocol can be registered/unregistered.</value>
+  </data>
+  <data name="ExceptionMsg_Formatable1_UnableToLoadMasterType" xml:space="preserve">
+    <value>Master type for the {0} standalone plugin proxy not found.</value>
+  </data>
+  <data name="UI_ToolTip_HyphenTrayIcon" xml:space="preserve">
+    <value>Hyphen</value>
+  </data>
+  <data name="ExceptionMsg_Formatable3_MenuItemServiceAlreadySet" xml:space="preserve">
+    <value>Cannot associate menu item '{0}' with method '{1}' - the item is already associated with service '{2}'.</value>
+  </data>
+  <data name="ExceptionMsg_Formatable1_ServiceFunctionAlreadyExists" xml:space="preserve">
+    <value>Cannot create service function '{0}' - the service already exists.</value>
+  </data>
+  <data name="ExceptionMsg_Formatable1_InvalidMethodSignature" xml:space="preserve">
+    <value>Unable to process method '{0}' - method signature does not match required delegate signature.</value>
+  </data>
+  <data name="ExceptionMsg_HyphenSxSNotSupported" xml:space="preserve">
+    <value>Multiple Hyphen plugins are not supported side-by-side.</value>
+  </data>
+  <data name="MsgBox_Caption_HyphenCrashed" xml:space="preserve">
+    <value>Hyphen crashed</value>
+  </data>
+  <data name="MsgBox_Text_HyphenCrashed" xml:space="preserve">
+    <value>An error occured in Hyphen. Please, contact its author to resolve the issue.</value>
+  </data>
+  <data name="ExceptionMsg_OwnerUnknown" xml:space="preserve">
+    <value>Cannot read the setting on behalf of the owning module - the owning module cannot be determined.</value>
+  </data>
+  <data name="UI_Text_ConfigureStandaloneModules" xml:space="preserve">
+    <value>Options...</value>
+  </data>
+  <data name="UI_Text_Hyphen" xml:space="preserve">
+    <value>Hyphen</value>
+  </data>
+  <data name="Config_General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Config_General_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Config_General_About_Description" xml:space="preserve">
+    <value>Show Hyphen copyright information.</value>
+  </data>
+  <data name="Config_General_Description" xml:space="preserve">
+    <value>Review Hyphen information.</value>
+  </data>
+  <data name="Config_Management" xml:space="preserve">
+    <value>Management</value>
+  </data>
+  <data name="Config_Management_Plugins" xml:space="preserve">
+    <value>Plugins</value>
+  </data>
+  <data name="Config_Management_Plugins_Description" xml:space="preserve">
+    <value>Enable or disable Hyphen plugins on individual basis.</value>
+  </data>
+  <data name="Config_Management_Description" xml:space="preserve">
+    <value>Manage Hyphen plugins.</value>
+  </data>
+  <data name="UI_Text_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="UI_Text_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MsgBox_Formatable1_Text_ModuleError" xml:space="preserve">
+    <value>An error occured in the {0} plugin, some information may be lost. However, the plugin will continue running.</value>
+  </data>
+  <data name="MsgBox_Text_GenericPluginError" xml:space="preserve">
+    <value>Some information may be lost. However, the plugin will continue running.</value>
+  </data>
+  <data name="MsgBox_Formatable1_Caption_PluginError" xml:space="preserve">
+    <value>{0} error</value>
+  </data>
+  <data name="ExceptionMsg_FeatureNotAvailableInDomain" xml:space="preserve">
+    <value>The feature is not available from current domain.</value>
+  </data>
+  <data name="ExceptionMsg_HookNotFound" xml:space="preserve">
+    <value>Hook not found.</value>
+  </data>
+  <data name="ExceptionMsg_InvalidHandle" xml:space="preserve">
+    <value>The handle is invalid.</value>
+  </data>
+  <data name="ExceptionMsg_DuplicitLoaderOptions" xml:space="preserve">
+    <value>Duplicit loader options detected. RequiredVersion or MinimalMirandaVersion were set by a base class previously.</value>
+  </data>
+  <data name="UI_Text_ManagePlugins" xml:space="preserve">
+    <value>Manage plugins...</value>
+  </data>
+  <data name="MsgBox_Caption_NoPluginsLoaded" xml:space="preserve">
+    <value>No plugins enabled</value>
+  </data>
+  <data name="MsgBox_Text_NoPluginsLoaded" xml:space="preserve">
+    <value>To perform the task, you have to enable the plugins first.</value>
+  </data>
+  <data name="UI_Formatable1_Text_PluginCrashed" xml:space="preserve">
+    <value>{0} crashed</value>
+  </data>
+  <data name="MsgBox_Caption_Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="MsgBox_Text_UnableToReportError" xml:space="preserve">
+    <value>An error occured while preparing the report. Copy the details and visit http://forums.miranda-im.org for assistance.</value>
+  </data>
+</root>
