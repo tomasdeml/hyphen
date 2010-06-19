@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Virtuoso.Miranda.Plugins.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConfigurationDialog_HideExpertOptions_Checked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ConfigurationPanel_CategoryItems_View" Type="System.Windows.Forms.View" Scope="User">
+      <Value Profile="(Default)">Tile</Value>
+    </Setting>
+    <Setting Name="ConfigurationDialog_ClientSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">792, 562</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
