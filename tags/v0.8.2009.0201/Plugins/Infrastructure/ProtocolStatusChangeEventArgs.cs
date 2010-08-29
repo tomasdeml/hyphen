@@ -1,0 +1,52 @@
+﻿/***********************************************************************\
+ * Virtuoso.Miranda.Plugins (Hyphen)                                   *
+ * Provides a managed wrapper for API of IM client Miranda.            *
+ * Copyright (C) 2006-2009 virtuoso                                    *
+ *                    deml.tomas@seznam.cz                             *
+ *                                                                     *
+ * This library is free software; you can redistribute it and/or       *
+ * modify it under the terms of the GNU Lesser General Public          *
+ * License as published by the Free Software Foundation; either        *
+ * version 2.1 of the License, or (at your option) any later version.  *
+ *                                                                     *
+ * This library is distributed in the hope that it will be useful,     *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of      *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU   *
+ * Lesser General Public License for more details.                     *
+\***********************************************************************/
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Virtuoso.Miranda.Plugins.Infrastructure
+{
+    public class ProtocolStatusChangeEventArgs : MirandaEventArgs
+    {
+        #region Properties
+
+        private StatusMode newStatus;
+        public StatusMode NewStatus
+        {
+            get { return newStatus; }
+        }
+
+        private Protocol protocol;
+        public Protocol Protocol
+        {
+            get { return protocol; }
+        }
+
+        #endregion
+
+        #region .ctors
+
+        public ProtocolStatusChangeEventArgs(Protocol protocol, StatusMode newStatus)
+        {
+            this.newStatus = newStatus;
+            this.protocol = protocol;
+        }
+
+        #endregion
+    }
+}
