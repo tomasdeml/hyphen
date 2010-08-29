@@ -442,6 +442,6 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>if not exist IL mkdir IL
-"C:\Program Files\Microsoft Visual Studio 8\SDK\v2.0\Bin\ildasm.exe" "$(TargetFileName)" /linenum /out="IL\$(ProjectName).il"</PostBuildEvent>
+ildasm.exe /linenum "$(TargetFileName)" /out="IL\$(ProjectName).il"</PostBuildEvent>
   </PropertyGroup>
 </Project>
