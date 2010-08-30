@@ -1,4 +1,4 @@
-THREAD SYNCHRONIZATION
+THREAD SYNCHRONIZATION ===
 =============================================================================
 - If there is a SynchronizationSupervisor::BeginXXXUpdate() method,
   then this method should be used to lock on a XXX variable type instead 
