@@ -76,7 +76,7 @@ namespace Virtuoso.Hyphen
             }
             catch (Exception e)
             {
-                Log.Write(0, Loader.LogCategory, "Unable to load custom assembly probe (" + e.Message + "), defaulting to the built-in one.");
+                Log.DebuggerWrite(0, Loader.LogCategory, "Unable to load custom assembly probe (" + e.Message + "), defaulting to the built-in one.");
             }
 
             assemblyProbe = customProbe ?? InstantiateRemoteObject<AssemblyProbe>(GetType().Assembly.FullName, typeof(DefaultAssemblyProbe).FullName);
@@ -96,7 +96,7 @@ namespace Virtuoso.Hyphen
             }
             catch (Exception e)
             {
-                Log.Write(0, Loader.LogCategory, "Unable to load custom plugin manager (" + e.Message + "), defaulting to the built-in one.");
+                Log.DebuggerWrite(0, Loader.LogCategory, "Unable to load custom plugin manager (" + e.Message + "), defaulting to the built-in one.");
             }
 
             pluginManager = customManager ?? InstantiateRemoteObject<PluginManagerBase>(GetType().Assembly.FullName, typeof(DefaultPluginManager).FullName, context);

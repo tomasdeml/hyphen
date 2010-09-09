@@ -16,8 +16,6 @@
 \***********************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
 using Virtuoso.Miranda.Plugins.Infrastructure;
 
@@ -26,10 +24,16 @@ namespace Virtuoso.Miranda.Plugins.Native
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
     internal struct DBCONTACTWRITESETTING
     {
+        #region Fields
+
         public IntPtr Module;
         public IntPtr Name;
 
-        public DBVARIANT Value;
+        public DBVARIANT Value; 
+
+        #endregion
+
+        #region Methods
 
         public static unsafe object ExtractValue(IntPtr pDbWriteSetting)
         {
@@ -38,10 +42,10 @@ namespace Virtuoso.Miranda.Plugins.Native
             switch ((DatabaseSettingType)dbWriteSetting.Value.Type)
             {
                 case DatabaseSettingType.AsciiString:
-                    return Marshal.PtrToStringAnsi(dbWriteSetting.Value.Text.TextPtr);                
+                    return Marshal.PtrToStringAnsi(dbWriteSetting.Value.Text.TextPtr);
                 case DatabaseSettingType.UnicodeString:
                 case DatabaseSettingType.UTF8String:
-                    return Marshal.PtrToStringUni(dbWriteSetting.Value.Text.TextPtr);                
+                    return Marshal.PtrToStringUni(dbWriteSetting.Value.Text.TextPtr);
                 case DatabaseSettingType.Byte:
                     return dbWriteSetting.Value.Primitives.Byte;
                 case DatabaseSettingType.UInt16:
@@ -53,9 +57,29 @@ namespace Virtuoso.Miranda.Plugins.Native
                 case DatabaseSettingType.Deleted:
                     return null;
                 default:
-                    throw new NotSupportedException();
+                    LogUnsupportedValue(dbWriteSetting);
+                    return null;
             }
+        }
+
+        private static void LogUnsupportedValue(DBCONTACTWRITESETTING dbWriteSetting)
+        {
+            string name = "N/A";
+            string module = "N/A";
+
+            try
+            {
+                name = Translate.ToString(dbWriteSetting.Name, StringEncoding.Ansi);
+                module = Translate.ToString(dbWriteSetting.Module, StringEncoding.Ansi);
+            }
+            catch (Exception)
+            { }
+
+            Log.Warning("Attempted to extract an unsupported DB contact setting {0}:{1} of type {1}",
+                        module, name, dbWriteSetting.Value.Type.ToString("X"));
         } 
+
+        #endregion
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
