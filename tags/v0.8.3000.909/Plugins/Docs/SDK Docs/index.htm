@@ -1,0 +1,212 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="cs">
+<title>Midas SDK Docs</title>
+<style>
+<!--
+body         { font-family: Tahoma; font-size: 10pt }
+-->
+</style>
+</head>
+
+<body>
+
+<h1>Midas SDK Documentation v1.0</h1>
+<h4>Miranda .net Association Plugin SDK, © 2006 Virtuoso</h4>
+<h3>Contents</h3>
+<ul>
+  <li>Overview</li>
+  <li>Architecture</li>
+  <li>Namespaces<ul>
+    <li>Key namespaces</li>
+    <li>Native interop namespaces</li>
+  </ul>
+  </li>
+  <li>Classes<ul>
+    <li>Key classes<ul>
+      <li>Plugin definition/construction classes</li>
+      <li>Miranda API wrapper classes</li>
+    </ul>
+    </li>
+    <li>Native interop classes</li>
+    <li>Helper classes</li>
+  </ul>
+  </li>
+  <li>A Hello World plugin Walkthrough</li>
+</ul>
+<p>&nbsp;</p>
+<h3>Overview</h3>
+<p>Midas (Miranda .net Assocication Plugin) is a plugin allowing Microsoft.net 
+platform developers to access Miranda APIs thus allowing them to write Miranda 
+targeted managed plugins.</p>
+<p>I created Midas because I'm an avid C# programmer and I wanted to extend 
+Miranda in an easy, reliable and fast way - with Microsoft.net managed plugins.</p>
+<p>You can write Miranda plugins in any Ecma CLI compliant language, for example 
+C#, J#, Delphi, C++/CLI or Visual Basic.net. Please note that you may not be 
+able to take advantage of all Midas features from languages that do not support 
+some CLS non-compliant constructs. You may have problems using Microsoft Visual 
+Basic.net because it, for example, does not support unsigned data types. Miranda 
+and Midas use these types (System.UIntPtr) extensively.</p>
+<p>In a nutshell, Midas represents a native-to-managed wrapper presenting core 
+Miranda APIs in the OO fashion to .net. It wraps Miranda's procedural APIs to a 
+neat and logical object oriented interface.</p>
+<p>Using Midas, you can write Miranda plugins that you or anybody else find 
+useful. With .net plugins, you can accomplish complicated and complex tasks in 
+the much faster way.</p>
+<p>&nbsp;</p>
+<h3>Architecture</h3>
+<p>Midas consinsts of two crucial assemblies:</p>
+<ul>
+  <li><b>Midas.dll</b><ul>
+    <li>this assembly was written in IL (Intermediate Language) and contains 3 
+    unmanaged exports exposing required unmanaged plugin API exports to Miranda</li>
+    <li>previously, there was an C++/CLI assembly but it's maintentace was not 
+    as easy as it ought to be (and me, primarily .net programmer, concluded a 
+    pure IL assembly as a more transparent way to accomplish the connection with 
+    Miranda than the opaque IJW magic C++/CLI compiler uses)</li>
+    <li>this assembly instantiates the Virtuoso.Midas.Loader class that provides 
+    Miranda with a PLUGININFO information and initiates the .net plugins fusion</li>
+  </ul>
+  </li>
+  <li><b>Virtuoso.Miranda.Plugins.dll</b><ul>
+    <li>this assembly was written in safe C# and exposes unmanaged Miranda APIs 
+    to the .net world</li>
+    <li>in this assembly, there is the Virtuoso.Miranda.Plugins.PluginManager 
+    type (not publicly exposed) that finds, loads and initiates all the managed 
+    plugins in the &lt;mirandaFolder&gt;\plugins\managed folder</li>
+    <li>this assembly is the one you will want to reference on your plugin's 
+    compile time</li>
+    <li>this assembly also contains the most important type for us, developers, 
+    the Virtuoso.Mirandas.Plugins.MirandaPlugin class representing the base 
+    class for all of your plugins</li>
+  </ul>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<h3>Namespaces</h3>
+<p>There are many publicly visible namespaces containing key classes and many 
+native interop helper classes making easy to access not yet wrapped parts of the 
+Miranda API.</p>
+<h5>Key namespaces:</h5>
+<ul>
+  <li><b>Virtuoso.Miranda.Plugins</b><ul>
+    <li>contains funtionality concerning the plugin fusion, maintentace, 
+    definition and construction</li>
+  </ul>
+  </li>
+  <li><b>Virtuoso.Miranda.Plugins.Infrastructure</b><ul>
+    <li>contains all the functionality you may need to develop your plugins; 
+    provides Database, Contact List, Contact Information, Network Protocol and 
+    many other Miranda API wrappers</li>
+    <li>also contains some helper classes you may find useful 
+    (unmanaged-to-managed data translation services and localization helpers)</li>
+  </ul>
+  </li>
+  <li><b>Virtoso.Miranda.Plugins.Infrastructure.IndividualMirandaConnection</b><ul>
+    <li>contains additional helper classes for plugins not managed by the 
+    Microsoft.net plugins supervisor</li>
+  </ul>
+  </li>
+  <li><b>Virtuoso.Miranda.Plugins.ObjectCollections</b><ul>
+    <li>contains specialized object collections</li>
+  </ul>
+  </li>
+</ul>
+<h5>Native interop namespaces:</h5>
+<ul>
+  <li><b>Virtuoso.Miranda.Plugins.Native</b><ul>
+    <li>contains types you may use when you need to directly interface with 
+    Miranda APIs; provides you with unmanaged memory, string and struct handles</li>
+  </ul>
+  </li>
+</ul>
+<p>&nbsp;</p>
+<h3>Classes</h3>
+<p>There are several classes representing the Miranda API wrappers for Database, 
+Contact List and many other aspects of Miranda API model.</p>
+<h5>Key classes:</h5>
+<ul>
+  <li>
+  <h5>Plugin definition/construction classes</h5>
+  <ul>
+    <li>
+    <h5>Virtuoso.Miranda.Plugins namespace</h5>
+    <ul>
+      <li><b>abstract MirandaPlugin</b><ul>
+        <li>represents a base class for all .net plugins</li>
+        <li>to define a plugin, derive your class from this one, implement 
+        required abstract members and you are ready to go</li>
+        <li><b>members</b><ul>
+          <li><b>methods</b><ul>
+            <li><b>protected</b><ul>
+              <li><b>void .ctor()</b><ul>
+                <li>Initializes an instance of the MirandaPlugin class</li>
+              </ul>
+              </li>
+              <li><b>virtual void AfterPluginInitialization() </b>
+              <ul>
+                <li>executed after the first plugin initialization</li>
+                <li>executed only once a Midas lifetime</li>
+                <li>use this method to initialize your plugin after Miranda 
+                startup, for example for additional event hook-ups</li>
+                <li>DO NOT EXECUTE ANY TIME CONSUMING CODE IN THIS METHOD 
+                NEITHER SHOW ANY WINDOWS FORMS</li>
+              </ul>
+              </li>
+              <li><b>virtual void AfterMenuItemsPopulation()</b><ul>
+                <li>executed after the plugin menu items detection</li>
+                <li>executed only once a Midas lifetime</li>
+                <li>use this method to change properties or manipulate with your 
+                plugin menu items</li>
+                <li>DO NOT EXECUTE ANY TIME CONSUMING CODE IN THIS METHOD 
+                NEITHER SHOW ANY WINDOWS FORMS</li>
+              </ul>
+              </li>
+              <li><b>virtual void AfterPluginEnable()</b><ul>
+                <li>executed right after a plugin is enabled by the 
+                user/supervisor</li>
+                <li>executed every time a plugin is enabled</li>
+                <li>DO NOT EXECUTE ANY TIME CONSUMING CODE IN THIS METHOD 
+                NEITHER SHOW ANY WINDOWS FORMS</li>
+              </ul>
+              </li>
+              <li><b>virtual void BeforePluginDisable()</b><ul>
+                <li>executed right before a plugin is disabled by the 
+                user/supervisor</li>
+                <li>use this method to unhook events or destroy service 
+                functions you created manually; events and services declared 
+                through attributes will be unhooked/destroyed automatically by 
+                the plugin supervisor</li>
+                <li>DO NOT EXECUTE ANY TIME CONSUMING CODE IN THIS METHOD 
+                NEITHER SHOW ANY WINDOWS FORMS</li>
+              </ul>
+              </li>
+              <li><b>virtual void BeforeMirandaShutdown</b><ul>
+                <li>executed right before Miranda or the plugin supervisor is 
+                shutdown</li>
+                <li>use this method to perform possible memory cleanup</li>
+                <li>DO NOT ALLOCATE NEW MEMORY NEITHER INTERFACE WITH MIRANDA 
+                THROUGH WRAPPERS OR NATIVE INTEROP FROM THIS METHOD; MIRANDA IS 
+                ABOUT TO SHUTDOWN AND MANY OF ITS APIS ARE NO LONGER AVAILABLE; 
+                USE THE BEFOREPLUGINDISABLE() METHOD INSTEAD</li>
+                <li></li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  </li>
+</ul>
+
+</body>
+
+</html>

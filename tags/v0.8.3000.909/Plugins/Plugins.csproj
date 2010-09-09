@@ -1,0 +1,447 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{319EA506-200F-48DE-92D7-64D09D7CA477}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Virtuoso.Miranda.Plugins</RootNamespace>
+    <AssemblyName>Hyphen</AssemblyName>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>Virtuoso.Hyphen.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Hyphen.xml</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <DocumentationFile>bin\Hyphen.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TabStripControlLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fae8f1199e7106dc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Thirdparty\TabStripControlLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExposingPluginAttribute.cs" />
+    <Compile Include="Hyphen\Mini\Module.AuxiliaryPluginManager.cs">
+      <DependentUpon>Module.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hyphen\Mini\Custom\CustomApiExportHandlerAttribute.cs" />
+    <Compile Include="Hyphen\Mini\Custom\CustomApiExportDescriptor.cs" />
+    <Compile Include="Hyphen\Mini\Custom\DatabaseDriver.cs" />
+    <Compile Include="Hyphen\Mini\Custom\DatabaseLink.cs" />
+    <Compile Include="Hyphen\Mini\Custom\DatabaseLinkPrototypes.cs" />
+    <Compile Include="Hyphen\Mini\Custom\CustomizedDatabaseDriver.cs" />
+    <Compile Include="LoaderOptionsAttribute.cs" />
+    <Compile Include="Hyphen\Mini\ModuleManager.cs" />
+    <Compile Include="Infrastructure\ServiceCallInterceptionManager.cs" />
+    <Compile Include="DefaultAssemblyProbe.cs" />
+    <Compile Include="IDescriptor.cs" />
+    <Compile Include="Infrastructure\EventHandle.cs" />
+    <Compile Include="Infrastructure\MirandaEnvironment.cs" />
+    <Compile Include="Hyphen\Mini\Module.cs" />
+    <Compile Include="Hyphen\Mini\StandalonePlugin.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Hyphen\FusionContext.cs" />
+    <Compile Include="Hyphen\Loader.cs" />
+    <Compile Include="Hyphen\Native\NativePluginLink.cs" />
+    <Compile Include="Hyphen\Native\PluginLinkPrototypes.cs" />
+    <Compile Include="Forms\Controls\ManagedMainMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Native\CCSDATA.cs" />
+    <Compile Include="Native\DBCONTACTSETTING.cs" />
+    <Compile Include="Native\DBVARIANT.cs" />
+    <Compile Include="Hyphen\Native\PLUGININFO.cs" />
+    <Compile Include="Native\IconImageCache.cs" />
+    <Compile Include="Native\InteropBuffer.cs" />
+    <Compile Include="Native\InteropBufferPool.cs" />
+    <Compile Include="Native\NativeMethods.cs" />
+    <Compile Include="Collections\EventHandleCollection.cs" />
+    <Compile Include="Collections\HookDescriptorCollection.cs" />
+    <Compile Include="Infrastructure\ContactList.cs" />
+    <Compile Include="Infrastructure\EventHookAttribute.cs" />
+    <Compile Include="Infrastructure\ContactListEventArgs.cs" />
+    <Compile Include="Infrastructure\GroupInfo.cs" />
+    <Compile Include="Infrastructure\HookType.cs" />
+    <Compile Include="Infrastructure\ContactInfo.cs" />
+    <Compile Include="Infrastructure\ContactInfoProperty.cs" />
+    <Compile Include="Infrastructure\IMirandaObject.cs" />
+    <Compile Include="Infrastructure\MirandaItem.cs" />
+    <Compile Include="Infrastructure\MirandaDatabase.cs" />
+    <Compile Include="Infrastructure\DatabaseEventInfo.cs" />
+    <Compile Include="Infrastructure\PublicEnums.cs" />
+    <Compile Include="Infrastructure\MenuItemDeclarationAttribute.cs" />
+    <Compile Include="Infrastructure\MirandaContactEventArgs.cs" />
+    <Compile Include="Infrastructure\MirandaDatabaseEventArgs.cs" />
+    <Compile Include="Infrastructure\LanguagePackStringResolver.cs" />
+    <Compile Include="Infrastructure\ProtocolStatusChangeEventArgs.cs" />
+    <Compile Include="Infrastructure\ProtocolStatus.cs" />
+    <Compile Include="Infrastructure\ServiceFunctionAttribute.cs" />
+    <Compile Include="Infrastructure\IStringResolver.cs" />
+    <Compile Include="Forms\ErrorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ErrorDialog.Designer.cs">
+      <DependentUpon>ErrorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FusionException.cs" />
+    <Compile Include="Infrastructure\Protocol.cs" />
+    <Compile Include="Infrastructure\MirandaEvents.cs" />
+    <Compile Include="Infrastructure\StatusMode.cs" />
+    <Compile Include="Infrastructure\MirandaContext.cs" />
+    <Compile Include="Infrastructure\LazyEventBinder.cs" />
+    <Compile Include="Collections\ITagSearchable.cs" />
+    <Compile Include="Collections\MenuItemDeclarationCollection.cs" />
+    <Compile Include="Collections\MenuItemDeclarationReadOnlyCollection.cs" />
+    <None Include="Native\ADDCONTACTSTRUCT.cs" />
+    <Compile Include="Native\IUnmanagedMemoryHandle.cs" />
+    <Compile Include="Infrastructure\ContactListInfoTip.cs" />
+    <Compile Include="Native\CONTACTINFO.cs" />
+    <Compile Include="Native\DBEVENTINFO.cs" />
+    <Compile Include="Native\PROTOCOLDESCRIPTOR.cs" />
+    <Compile Include="Native\UnmanagedStringHandle.cs" />
+    <Compile Include="Collections\ProtocolDictionary.cs" />
+    <Compile Include="Collections\PluginDescriptorCollection.cs" />
+    <Compile Include="Collections\PluginDescriptorReadOnlyCollection.cs" />
+    <Compile Include="PluginManagerBase.cs" />
+    <Compile Include="AssemblyProbe.cs" />
+    <Compile Include="Infrastructure\Translate.cs" />
+    <Compile Include="MirandaPlugin.cs" />
+    <Compile Include="Infrastructure\MirandaServices.cs" />
+    <Compile Include="Infrastructure\HookDescriptor.cs" />
+    <Compile Include="Native\MenuItemModifyFlags.cs" />
+    <Compile Include="Native\MirandaException.cs" />
+    <Compile Include="Native\MIRANDASYSTRAYNOTIFY.cs" />
+    <Compile Include="Native\UnmanagedStructHandle.cs" />
+    <Compile Include="PluginDescriptor.cs" />
+    <Compile Include="DefaultPluginManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Native\CLISTMENUITEM.cs" />
+    <Compile Include="Resources\TextResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TextResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\VisualResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VisualResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SynchronizationHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\ErrorDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ErrorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\TextResources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TextResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ShowManagedMenuItems.ico" />
+    <EmbeddedResource Include="Resources\VisualResources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>VisualResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collections\ControlCollection.cs" />
+    <Compile Include="Collections\ModuleCollection.cs" />
+    <Compile Include="Collections\ModuleReadOnlyCollection.cs" />
+    <Compile Include="Collections\CustomApiExportDescriptorCollection.cs" />
+    <Compile Include="Collections\ConfigurationValues.cs" />
+    <Compile Include="ConfigurableMirandaPlugin.cs" />
+    <Compile Include="Configuration\ConfigurableEntityDescriptor.cs" />
+    <Compile Include="Configuration\Forms\Controls\PluginManagementContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Configuration\Forms\Controls\PluginManagementContent.Designer.cs">
+      <DependentUpon>PluginManagementContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\Forms\ConfigurationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuration\Forms\ConfigurationDialog.Designer.cs">
+      <DependentUpon>ConfigurationDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\CategoryItem.cs" />
+    <Compile Include="Configuration\CategoryItemCollection.cs" />
+    <Compile Include="Configuration\Forms\Controls\CategoryItemHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Configuration\Forms\Controls\CategoryItemHeader.Designer.cs">
+      <DependentUpon>CategoryItemHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\Forms\Controls\CategoryItemCommandControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Configuration\Forms\Controls\CategoryItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Configuration\Category.cs" />
+    <Compile Include="Configuration\CategoryCollection.cs" />
+    <Compile Include="Configuration\Forms\Controls\CategoryItemSection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Configuration\Forms\Controls\CategoryItemSection.Designer.cs">
+      <DependentUpon>CategoryItemSection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\IEncryption.cs" />
+    <Compile Include="Configuration\IsolatedStorage.cs" />
+    <Compile Include="Configuration\IStorage.cs" />
+    <Compile Include="Configuration\PortableEncryption.cs" />
+    <Compile Include="Configuration\PortableStorage.cs" />
+    <Compile Include="Configuration\StorageBase.cs" />
+    <Compile Include="Configuration\WindowsEncryption.cs" />
+    <Compile Include="DefaultExceptionHandler.cs" />
+    <Compile Include="Forms\Controls\CommandButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\ContactListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\CueBannerTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\GradientPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\ManagedMainMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\TrayContextMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Controls\TrayMenuManager.cs" />
+    <Compile Include="Forms\FusionProgressDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FusionProgressDialog.Designer.cs">
+      <DependentUpon>FusionProgressDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InformationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InformationDialog.Designer.cs">
+      <DependentUpon>InformationDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ISynchronizedSubscriber.cs" />
+    <Compile Include="Forms\LocalizableDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RemotableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SingletonDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpers\EnumValueFriendlyNameAttribute.cs" />
+    <Compile Include="Helpers\MessageQueue.cs" />
+    <Compile Include="Helpers\Utilities.cs" />
+    <Compile Include="Hyphen\Configuration\Controls\AboutContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Hyphen\Configuration\Controls\AboutContent.Designer.cs">
+      <DependentUpon>AboutContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hyphen\Configuration\RuntimeConfiguration.cs" />
+    <Compile Include="Hyphen\Configuration\RuntimeConfigurator.cs" />
+    <Compile Include="Hyphen\Mini\ProtocolPlugin.cs" />
+    <Compile Include="Hyphen\MirandaPluginLink.cs" />
+    <Compile Include="Hyphen\Native\Enums.cs" />
+    <Compile Include="Hyphen\Native\PLUGININFOEX.cs" />
+    <Compile Include="IExceptionDumpController.cs" />
+    <Compile Include="IExceptionReporter.cs" />
+    <Compile Include="Infrastructure\EventManager.cs" />
+    <Compile Include="Infrastructure\HookManager.cs" />
+    <Compile Include="Infrastructure\ServiceManager.cs" />
+    <Compile Include="Native\DBEVENTGETTEXT.cs" />
+    <Compile Include="Native\MM_INTERFACE.cs" />
+    <Compile Include="Native\UUID.cs" />
+    <Compile Include="Hyphen\PluginSandbox.cs" />
+    <Compile Include="Helpers\Sandbox.cs" />
+    <Compile Include="Helpers\IniStructure.cs" />
+    <Compile Include="IConfigurablePlugin.cs" />
+    <Compile Include="IConfigurablePluginBase.cs" />
+    <Compile Include="IExceptionHandler.cs" />
+    <Compile Include="Infrastructure\MirandaObject.cs" />
+    <Compile Include="Infrastructure\Protocols\AckEventArgs.cs" />
+    <Compile Include="Infrastructure\Protocols\AckRouter.cs" />
+    <Compile Include="Infrastructure\EventPublisher.cs" />
+    <Compile Include="Infrastructure\HookAttribute.cs" />
+    <Compile Include="Infrastructure\ISettingOwner.cs" />
+    <Compile Include="Infrastructure\MirandaContactSettingEventArgs.cs" />
+    <Compile Include="Infrastructure\MirandaEventArgs.cs" />
+    <Compile Include="Infrastructure\PluginConfiguration.cs" />
+    <Compile Include="Infrastructure\ConfigurationException.cs" />
+    <Compile Include="Infrastructure\ConfigurationOptionsAttribute.cs" />
+    <Compile Include="Forms\PluginDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\ContextWorker.cs" />
+    <Compile Include="Infrastructure\Protocols\AckEnums.cs" />
+    <Compile Include="Infrastructure\Protocols\ManagedProtocol.cs" />
+    <Compile Include="Infrastructure\Protocols\AckBroadcaster.cs" />
+    <Compile Include="Infrastructure\Protocols\ContactChainData.cs" />
+    <Compile Include="Infrastructure\RemoteObject.cs" />
+    <Compile Include="Infrastructure\LanguagePack.cs" />
+    <Compile Include="Infrastructure\MirandaEventHandler.cs" />
+    <Compile Include="Infrastructure\RuntimeEnvironment.cs" />
+    <Compile Include="Infrastructure\CallbackWrapper.cs" />
+    <Compile Include="Infrastructure\Skin.cs" />
+    <Compile Include="Infrastructure\StringResolverCache.cs" />
+    <Compile Include="Helpers\TypeInstanceCache.cs" />
+    <Compile Include="MirandaPlugin.EmptyPlugin.cs">
+      <DependentUpon>MirandaPlugin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Native\ACKDATA.cs" />
+    <Compile Include="Infrastructure\ContactListEvent.cs" />
+    <Compile Include="PluginStateChangeEventArgs.cs" />
+    <Compile Include="PMConfiguration.cs" />
+    <Compile Include="Configuration\PMConfigurator.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RuntimeNotSupportedException.cs" />
+    <Compile Include="ThirdParty\Updater\Native\UPDATE.cs" />
+    <Compile Include="ThirdParty\Updater\Update.cs" />
+    <Compile Include="ThirdParty\Updater\UpdaterPlugin.cs" />
+    <None Include="Resources\Engine.ico" />
+    <EmbeddedResource Include="Resources\miranda32.exe.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Docs\CodingConventions.txt" />
+    <Content Include="Docs\README.txt" />
+    <Content Include="Docs\History.txt" />
+    <EmbeddedResource Include="Configuration\Forms\Controls\PluginManagementContent.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PluginManagementContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration\Forms\Controls\CategoryItemHeader.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CategoryItemHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration\Forms\Controls\CategoryItemSection.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CategoryItemSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\ContactListView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ContactListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hyphen\Configuration\Controls\AboutContent.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Configure.ico" />
+    <None Include="Resources\Icon 256_32x32.png" />
+    <None Include="Resources\Icon 256_64x67.png" />
+    <None Include="Resources\Icon 232_32x32.png" />
+    <None Include="Resources\Icon 232_64x67.png" />
+    <None Include="Resources\Icon 047_64x67.png" />
+    <None Include="Resources\Icon 244_48x48.png" />
+    <Content Include="Resources\RibbonClick.png" />
+    <Content Include="Resources\RibbonHover.png" />
+    <None Include="Resources\Icon 3048.ico" />
+    <None Include="Resources\Icon 2466.ico" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\icon 299_32x32.ico" />
+    <None Include="Resources\icon 214_48x48.ico" />
+    <None Include="ThirdParty\Updater\Native\m_updater.h" />
+    <None Include="Virtuoso.Hyphen.snk" />
+    <EmbeddedResource Include="Configuration\Forms\ConfigurationDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConfigurationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration\Forms\Controls\CategoryItemControl.resx">
+      <DependentUpon>CategoryItemControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\CommandButton.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CommandButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Controls\TrayContextMenu.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TrayContextMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FusionProgressDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FusionProgressDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InformationDialog.resx">
+      <DependentUpon>InformationDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LoadUnloadPlugins.ico" />
+  </ItemGroup>
+  <!--<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>if not exist IL mkdir IL
+ildasm.exe /linenum "$(TargetFileName)" /out="IL\$(ProjectName).il"</PostBuildEvent>
+  </PropertyGroup>
+</Project>
