@@ -82,14 +82,12 @@ namespace Virtuoso.Hyphen.Configuration.Controls
             // HomepageLINK
             // 
             this.HomepageLINK.AutoSize = true;
-            this.HomepageLINK.LinkArea = new System.Windows.Forms.LinkArea(13, 8);
             this.HomepageLINK.Location = new System.Drawing.Point(130, 85);
             this.HomepageLINK.Name = "HomepageLINK";
-            this.HomepageLINK.Size = new System.Drawing.Size(115, 18);
+            this.HomepageLINK.Size = new System.Drawing.Size(121, 13);
             this.HomepageLINK.TabIndex = 3;
             this.HomepageLINK.TabStop = true;
-            this.HomepageLINK.Text = "© 2006-2008, virtuoso";
-            this.HomepageLINK.UseCompatibleTextRendering = true;
+            this.HomepageLINK.Text = "© (Assembly copyright)";
             this.HomepageLINK.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.HomepageLINK_LinkClicked);
             // 
             // pictureBox1
@@ -138,7 +136,7 @@ namespace Virtuoso.Hyphen.Configuration.Controls
             this.listBox1.Sorted = true;
             this.listBox1.TabIndex = 6;
             // 
-            // AboutControl
+            // AboutContent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -150,7 +148,7 @@ namespace Virtuoso.Hyphen.Configuration.Controls
             this.Controls.Add(this.categoryItemSection1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "AboutControl";
+            this.Name = "AboutContent";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
