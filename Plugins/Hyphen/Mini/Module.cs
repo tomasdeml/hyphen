@@ -86,7 +86,7 @@ namespace Virtuoso.Hyphen.Mini
             if (HyphenLoader == null)
             {
                 string message = String.Format("Hyphen.Mini module requested a Loader of version {0}, but that one is not available. Upgrade Hyphen.", supportedVersion);
-                Log.Write(5, LogCategory, message);
+                Log.DebuggerWrite(5, LogCategory, message);
 
                 throw new RuntimeNotSupportedException(null, supportedVersion);
             }
@@ -95,7 +95,7 @@ namespace Virtuoso.Hyphen.Mini
             MasterDirectory = Path.GetDirectoryName(MiniAssembly.Location);
             MasterAssemblyPath = Path.GetFileName(MiniAssembly.Location);
 
-            Log.Write(0, LogCategory, "Connection between Miranda and '" + MasterAssemblyPath + "' established.");
+            Log.DebuggerWrite(0, LogCategory, "Connection between Miranda and '" + MasterAssemblyPath + "' established.");
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Virtuoso.Hyphen.Mini
             if (PluginInfoPtr != IntPtr.Zero)
                 return PluginInfoPtr;
 
-            Log.Write(0, LogCategory, "MirandaPluginInfo export invoked for " + MasterAssemblyPath);
+            Log.DebuggerWrite(0, LogCategory, "MirandaPluginInfo export invoked for " + MasterAssemblyPath);
             StandalonePlugin plugin = null;
 
             try
@@ -149,12 +149,12 @@ namespace Virtuoso.Hyphen.Mini
                     }
                 }
                 else
-                    Log.Write(0, LogCategory, "No master assembly found for '" + MasterAssemblyPath + "' - aborting initialization");
+                    Log.DebuggerWrite(0, LogCategory, "No master assembly found for '" + MasterAssemblyPath + "' - aborting initialization");
             }
             catch (Exception e)
             {
                 DefaultExceptionHandler.Create(plugin).HandleException(e, null);
-                Log.Write(5, LogCategory, "An error occurred while executing the MirandaPluginInfo export\n" + e.ToString());
+                Log.DebuggerWrite(5, LogCategory, "An error occurred while executing the MirandaPluginInfo export\n" + e.ToString());
             }
 
             // Return dummy instance, not null (crashes Miranda 0.8.0.1)
@@ -177,7 +177,7 @@ namespace Virtuoso.Hyphen.Mini
             catch (Exception e)
             {
                 DefaultExceptionHandler.Create(StandalonePlugin).HandleException(e, StandalonePlugin.Descriptor);
-                Log.Write(5, LogCategory, "An error occured while executing the MirandaPluginInterfaces export\n" + e.ToString());
+                Log.DebuggerWrite(5, LogCategory, "An error occured while executing the MirandaPluginInterfaces export\n" + e.ToString());
             }
 
             return IntPtr.Zero;
@@ -195,7 +195,7 @@ namespace Virtuoso.Hyphen.Mini
                 if (Loaded)
                     throw new InvalidOperationException(TextResources.ExceptionMsg_PluginAlreadyInitialized);
 
-                Log.Write(0, LogCategory, "Load export invoked for " + MasterAssemblyPath);
+                Log.DebuggerWrite(0, LogCategory, "Load export invoked for " + MasterAssemblyPath);
 
                 // Initialize the runtime (if necessary)
                 HyphenLoader.ModuleInducedLoad(pPluginLink);
@@ -211,13 +211,13 @@ namespace Virtuoso.Hyphen.Mini
                 // When Miranda completes initialization...
                 MirandaContext.Current.ModulesLoaded += ModulesLoadedHandler;
 
-                Log.Write(0, LogCategory, "Finishing " + MasterAssemblyPath + " initialization");
+                Log.DebuggerWrite(0, LogCategory, "Finishing " + MasterAssemblyPath + " initialization");
                 return (int)CallbackResult.Success;
             }
             catch (Exception e)
             {
                 DefaultExceptionHandler.Create(StandalonePlugin).HandleException(e, StandalonePlugin.Descriptor);
-                Log.Write(5, LogCategory, "An error occurred while executing the Load export\n" + e.ToString());
+                Log.DebuggerWrite(5, LogCategory, "An error occurred while executing the Load export\n" + e.ToString());
 
                 return (int)CallbackResult.Failure;
             }
@@ -281,12 +281,12 @@ namespace Virtuoso.Hyphen.Mini
                 PluginDescriptor = null;
                 standalonePlugin = null;
 
-                Log.Write(0, LogCategory, "Connection between Miranda and '" + MasterAssemblyPath + "' broken.");
+                Log.DebuggerWrite(0, LogCategory, "Connection between Miranda and '" + MasterAssemblyPath + "' broken.");
             }
             catch (Exception e)
             {
                 DefaultExceptionHandler.Create(StandalonePlugin).HandleException(e, StandalonePlugin.Descriptor);
-                Log.Write(5, LogCategory, "An error occurred while executing the Unload export\n" + e.ToString());
+                Log.DebuggerWrite(5, LogCategory, "An error occurred while executing the Unload export\n" + e.ToString());
 
                 return (int)CallbackResult.Failure;
             }
@@ -375,7 +375,7 @@ namespace Virtuoso.Hyphen.Mini
             }
             catch (Exception e)
             {
-                Log.Write(5, LogCategory, "Unable to probe custom plugin api exports. " + e.Message);
+                Log.DebuggerWrite(5, LogCategory, "Unable to probe custom plugin api exports. " + e.Message);
                 throw;
             }
         }
@@ -418,7 +418,7 @@ namespace Virtuoso.Hyphen.Mini
             }
             catch (Exception e)
             {
-                Log.Write(5, LogCategory, "Unable to instantiate the master plugin. " + e.Message);
+                Log.DebuggerWrite(5, LogCategory, "Unable to instantiate the master plugin. " + e.Message);
                 throw;
             }
         }

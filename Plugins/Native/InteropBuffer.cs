@@ -55,12 +55,12 @@ namespace Virtuoso.Miranda.Plugins.Native
             if (size <= 0) throw new ArgumentOutOfRangeException("size");
 
             SyncObject = new object();
-            Log.Write(0, LogCategory, "InteropBuffer SyncObject initialized");
+            Log.DebuggerWrite(0, LogCategory, "InteropBuffer SyncObject initialized");
 
             this.size = size;
 
             intPtr = Marshal.AllocHGlobal(size);
-            Log.Write(0, LogCategory, "InteropBuffer memory allocated (" + size + " B)");
+            Log.DebuggerWrite(0, LogCategory, "InteropBuffer memory allocated (" + size + " B)");
         }
 
         ~InteropBuffer()
@@ -121,7 +121,7 @@ namespace Virtuoso.Miranda.Plugins.Native
                 Marshal.FreeHGlobal(intPtr);
                 intPtr = IntPtr.Zero;
 
-                Log.Write(0, LogCategory, "InteropBuffer memory released");
+                Log.DebuggerWrite(0, LogCategory, "InteropBuffer memory released");
             }
         }
 
@@ -200,24 +200,24 @@ namespace Virtuoso.Miranda.Plugins.Native
 
         public void Lock()
         {
-            Log.Write(0, LogCategory, "Attempting to lock InteropBuffer for thread id " + Thread.CurrentThread.ManagedThreadId);
+            Log.DebuggerWrite(0, LogCategory, "Attempting to lock InteropBuffer for thread id " + Thread.CurrentThread.ManagedThreadId);
 
             Monitor.Enter(SyncObject);
             Owner = Thread.CurrentThread.ManagedThreadId;
 
-            Log.Write(0, LogCategory, "InteropBuffer locked for thread id " + Owner);
+            Log.DebuggerWrite(0, LogCategory, "InteropBuffer locked for thread id " + Owner);
         }
 
         public void Unlock()
         {
-            Log.Write(0, LogCategory, "Attempting to unlock InteropBuffer of thread id " + Thread.CurrentThread.ManagedThreadId);
+            Log.DebuggerWrite(0, LogCategory, "Attempting to unlock InteropBuffer of thread id " + Thread.CurrentThread.ManagedThreadId);
             CheckLock();
 
             if (Owner == Thread.CurrentThread.ManagedThreadId)
             {
                 Monitor.Exit(SyncObject);
 
-                Log.Write(0, LogCategory, "InteropBuffer unlocked by thread id " + this.Owner);
+                Log.DebuggerWrite(0, LogCategory, "InteropBuffer unlocked by thread id " + this.Owner);
                 Owner = 0;
             }
             else

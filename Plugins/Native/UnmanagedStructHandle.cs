@@ -182,7 +182,7 @@ namespace Virtuoso.Miranda.Plugins.Native
             }
             catch (Exception e)
             {
-                Log.Write(100, GetType().FullName, "Unable to free a struct handle: " + e.ToString());
+                Log.DebuggerWrite(100, GetType().FullName, "Unable to free a struct handle: " + e.ToString());
             }
         }
 

@@ -417,7 +417,7 @@ namespace Virtuoso.Miranda.Plugins
         {
             try
             {
-                Log.Write(0, LogCategory, "Shutting down Plugin Manager...");
+                Log.DebuggerWrite(0, LogCategory, "Shutting down Plugin Manager...");
                 SynchronizationHelper.BeginCollectionUpdate(this.pluginDescriptors);
 
                 PMConfiguration.Singleton.Save();                
@@ -433,7 +433,7 @@ namespace Virtuoso.Miranda.Plugins
             finally
             {
                 SynchronizationHelper.EndUpdate(this.pluginDescriptors);
-                Log.Write(0, LogCategory, "Plugin Manager was shut down; all managed plugins were disabled");
+                Log.DebuggerWrite(0, LogCategory, "Plugin Manager was shut down; all managed plugins were disabled");
             }
         }
 

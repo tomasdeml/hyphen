@@ -39,10 +39,10 @@ namespace Virtuoso.Miranda.Plugins
             : base(fusionContext, true, true)
         {
             AssemblyName assemblyName = Assembly.GetExecutingAssembly().GetName();
-            Log.Write(0, LogCategory, "Hyphen Plugin Manager v" + assemblyName.Version.ToString() + " is initializing, please wait...");            
+            Log.DebuggerWrite(0, LogCategory, "Hyphen Plugin Manager v" + assemblyName.Version.ToString() + " is initializing, please wait...");            
 
             FirePrimaryPluginManagerInitializedEvent(this, EventArgs.Empty);
-            Log.Write(0, LogCategory, "Default Plugin Manager initialized.");
+            Log.DebuggerWrite(0, LogCategory, "Default Plugin Manager initialized.");
         }
 
         #endregion
@@ -67,11 +67,11 @@ namespace Virtuoso.Miranda.Plugins
 
                 if (paths.Length == 0)
                 {
-                    Log.Write(1, LogCategory, "No managed plugins found.");
+                    Log.DebuggerWrite(1, LogCategory, "No managed plugins found.");
                     return;
                 }
 
-                Log.Write(0, LogCategory, "Found " + paths.Length + " managed plugins...");
+                Log.DebuggerWrite(0, LogCategory, "Found " + paths.Length + " managed plugins...");
 
                 foreach (string path in paths)
                     LoadAssembly(path, ref currentAssembly, ref currentType, ref currentPlugin);
@@ -79,7 +79,7 @@ namespace Virtuoso.Miranda.Plugins
             catch (Exception e)
             {
                 FusionException fEx = null;
-                Log.Write(0, LogCategory, e.ToString());
+                Log.DebuggerWrite(0, LogCategory, e.ToString());
 
                 if (e is IOException)
                     fEx = new FusionException(TextResources.ExceptionMsg_IOErrorOccurred, currentAssembly, null, null, e);
@@ -96,13 +96,13 @@ namespace Virtuoso.Miranda.Plugins
                 RaiseFusionCompletedEvent(EventArgs.Empty);
 
                 Infrastructure.PluginConfiguration.FlushCaches();
-                Log.Write(0, LogCategory, "Fusion completed.");
+                Log.DebuggerWrite(0, LogCategory, "Fusion completed.");
             }
         }
 
         private void LoadAssembly(string path, ref Assembly currentAssembly, ref Type currentType, ref MirandaPlugin currentPlugin)
         {
-            Log.Write(0, LogCategory, "Loading assembly '" + path + "'...");
+            Log.DebuggerWrite(0, LogCategory, "Loading assembly '" + path + "'...");
 
             try
             {
@@ -134,7 +134,7 @@ namespace Virtuoso.Miranda.Plugins
             if (type == null)
                 throw new ArgumentNullException("type");
 
-            Log.Write(0, LogCategory, "Loading plugin '" + type.Name + "'...");
+            Log.DebuggerWrite(0, LogCategory, "Loading plugin '" + type.Name + "'...");
 
             try
             {
@@ -149,7 +149,7 @@ namespace Virtuoso.Miranda.Plugins
                 if (IsEnabled(plugin))
                     SetPluginState(pluginDescriptor, PluginState.Enabled);
 
-                Log.Write(0, LogCategory, "Plugin successfully loaded.");
+                Log.DebuggerWrite(0, LogCategory, "Plugin successfully loaded.");
             }
             catch (MissingMethodException mmEx)
             {
