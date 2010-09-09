@@ -16,18 +16,42 @@
 \***********************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Virtuoso.Miranda.Plugins
 {
     internal static class Log
     {
+        #region Properties
+
+        private static TraceSwitch traceSwitch;
+        public static TraceSwitch TraceSwitch
+        {
+            get { return traceSwitch; }
+        }
+
+        #endregion
+
+        #region .ctors
+
+        static Log()
+        {
+            traceSwitch = new TraceSwitch("HyphenTracing", "Hyphen Tracing", "Warning");
+        } 
+
+        #endregion
+
         [Conditional("DEBUG")]
-        public static void Write(int priority, string source, string message)
+        public static void DebuggerWrite(int priority, string source, string message)
         {
             Debugger.Log(priority, source, message);
+        }
+
+        public static void Warning(string message, string category, params string[] formatArgs)
+        {
+            Trace.WriteLineIf(TraceSwitch.TraceWarning, String.Format(message, formatArgs), category);
         }
     }
 }

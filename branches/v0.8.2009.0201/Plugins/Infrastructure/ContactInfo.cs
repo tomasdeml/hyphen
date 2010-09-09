@@ -129,7 +129,7 @@ namespace Virtuoso.Miranda.Plugins.Infrastructure
                 owningModule = Protocol.UnknownProtocol;
 
                 if (contactHandle != IntPtr.Zero)
-                    Log.Write(5, Loader.LogCategory, "Unable to obtain contact's protocol");
+                    Log.DebuggerWrite(5, Loader.LogCategory, "Unable to obtain contact's protocol");
             }
 
             this.MirandaHandle = contactHandle;

@@ -51,9 +51,9 @@ namespace Virtuoso.Hyphen
 
         public const string LogCategory = "Hyphen";
 
-        private static readonly Uri HyphenUpdateUrl = new Uri("http://virtuosity.aspweb.cz/files/miranda/development/hyphen/updates/hyphen_update.zip"),
-            HyphenVersionUrl = new Uri("http://virtuosity.aspweb.cz/files/miranda/development/hyphen/updates/hyphen_update_version.txt"),
-            HyphenHomepageUrl = new Uri("http://virtuosity.aspweb.cz");
+        private static readonly Uri HyphenUpdateUrl = new Uri("http://virtuosity.aspone.cz/files/miranda/development/hyphen/updates/hyphen_update.zip"),
+            HyphenVersionUrl = new Uri("http://virtuosity.aspone.cz/files/miranda/development/hyphen/updates/hyphen_update_version.txt"),
+            HyphenHomepageUrl = new Uri("http://virtuosity.aspone.cz");
 
         private static readonly Version MinMirandaVersion = new Version(0, 7, 0, 0);
 
@@ -166,18 +166,18 @@ namespace Virtuoso.Hyphen
         private Loader()
         {
             AppDomain.CurrentDomain.UnhandledException += TrapUnhandledException;
-            Log.Write(0, LogCategory, "Initializing Hyphen...");
+            Log.DebuggerWrite(0, LogCategory, "Initializing Hyphen...");
 
             try
             {
                 InitializePluginInfo();
                 Virtuoso.Miranda.Plugins.Infrastructure.RuntimeEnvironment.Initialize();
 
-                Log.Write(0, LogCategory, "Hyphen successfully initialized.");
+                Log.DebuggerWrite(0, LogCategory, "Hyphen successfully initialized.");
             }
             catch (Exception e)
             {
-                Log.Write(5, LogCategory, "Failed constructing the PLUGININFO." + Environment.NewLine + e.ToString());
+                Log.DebuggerWrite(5, LogCategory, "Failed constructing the PLUGININFO." + Environment.NewLine + e.ToString());
                 throw;
             }
         }
@@ -210,7 +210,7 @@ namespace Virtuoso.Hyphen
             pluginInfo.Size = Marshal.SizeOf(pluginInfo.GetType());
             pluginInfo.Author = "virtuoso";
             pluginInfo.AuthorEmail = "deml.tomas@seznam.cz";
-            pluginInfo.Copyright = "© 2006-2008, virtuoso";
+            pluginInfo.Copyright = "© 2006-2010, virtuoso";
             pluginInfo.Description = "Microsoft.net runtime for managed plugins.";
             pluginInfo.HomePage = HyphenHomepageUrl.ToString();
             pluginInfo.Flags = (byte)PluginFlags.UnicodeAware;
@@ -383,7 +383,7 @@ namespace Virtuoso.Hyphen
                     // Hyphen not loaded yet...
                     if (PluginLink == null)
                     {
-                        Log.Write(0, LogCategory, "Loading Hyphen...");
+                        Log.DebuggerWrite(0, LogCategory, "Loading Hyphen...");
 
                         VerifyFxConfiguration();
                         EnsureSingleInstance();
@@ -392,12 +392,12 @@ namespace Virtuoso.Hyphen
                         HookRuntimeEvents();
                     }
 
-                    Log.Write(0, LogCategory, "Hyphen is loaded.");
+                    Log.DebuggerWrite(0, LogCategory, "Hyphen is loaded.");
                     return CallbackResult.Success;
                 }
                 catch (Exception e)
                 {
-                    Log.Write(5, LogCategory, "Failed loading Hyphen - " + e.ToString());
+                    Log.DebuggerWrite(5, LogCategory, "Failed loading Hyphen - " + e.ToString());
                     MirandaPlugin.Hyphen.Singleton.HandleException(e, null);
 
                     Unload();
@@ -438,7 +438,7 @@ namespace Virtuoso.Hyphen
             }
             catch (Exception e)
             {
-                Log.Write(5, LogCategory, "Failed hooking to the modules-loaded event. Initialization failed.");
+                Log.DebuggerWrite(5, LogCategory, "Failed hooking to the modules-loaded event. Initialization failed.");
                 throw new MirandaException(TextResources.ExceptionMsg_InternalErrorOccurred, e);
             }
         }
@@ -470,7 +470,7 @@ namespace Virtuoso.Hyphen
                 }
                 catch (Exception e)
                 {
-                    Log.Write(5, LogCategory, "Failed initializing Loader - " + e.Message);
+                    Log.DebuggerWrite(5, LogCategory, "Failed initializing Loader - " + e.Message);
                     Unload();
                 }
 
@@ -582,7 +582,7 @@ namespace Virtuoso.Hyphen
             {
                 try
                 {
-                    Log.Write(0, LogCategory, "Hyphen unload begin.");
+                    Log.DebuggerWrite(0, LogCategory, "Hyphen unload begin.");
 
                     if (Unloaded)
                         return (int)CallbackResult.Success;
@@ -598,7 +598,7 @@ namespace Virtuoso.Hyphen
                     // Lazy unload (only Tray disposal, all other resources will be cleaned by the CLR)
                     if (lazy)
                     {
-                        Log.Write(0, LogCategory, "Lazy unload completed.");
+                        Log.DebuggerWrite(0, LogCategory, "Lazy unload completed.");
                     }
                     // Complete unload
                     else
@@ -610,7 +610,7 @@ namespace Virtuoso.Hyphen
                 }
                 catch (Exception e)
                 {
-                    Log.Write(5, LogCategory, "Failed unloading Hyphen.\n" + e.ToString());
+                    Log.DebuggerWrite(5, LogCategory, "Failed unloading Hyphen.\n" + e.ToString());
                     return (int)CallbackResult.Failure;
                 }
                 finally
@@ -636,7 +636,7 @@ namespace Virtuoso.Hyphen
             if (MirandaContext.Initialized && !ModuleManager.Singleton.HasModules)
                 MirandaContext.InvalidateCurrent();
 
-            Log.Write(0, LogCategory, "Unload completed.");
+            Log.DebuggerWrite(0, LogCategory, "Unload completed.");
         }
 
         /// <summary>
@@ -678,7 +678,7 @@ namespace Virtuoso.Hyphen
             }
             catch (Exception e)
             {
-                Log.Write(5, LogCategory, "Unable to unload Hyphen from UnloadOnShutdownService: " + e.Message);
+                Log.DebuggerWrite(5, LogCategory, "Unable to unload Hyphen from UnloadOnShutdownService: " + e.Message);
             }
 
             return 0;
@@ -778,7 +778,7 @@ namespace Virtuoso.Hyphen
         /// </summary>
         private void StartFusion()
         {
-            Log.Write(0, LogCategory, "Loading plugins...");
+            Log.DebuggerWrite(0, LogCategory, "Loading plugins...");
 
             InitializeSandbox();
             InitializeFusionContext();
@@ -972,7 +972,7 @@ namespace Virtuoso.Hyphen
                 }
                 catch (Exception ex)
                 {
-                    Log.Write(0, LogCategory, "Plugin reload failed: " + ex.ToString());
+                    Log.DebuggerWrite(0, LogCategory, "Plugin reload failed: " + ex.ToString());
                 }
             }
         }

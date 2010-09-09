@@ -43,7 +43,7 @@ namespace Virtuoso.Miranda.Plugins
             }
             catch (Exception e)
             {
-                Log.Write(3, Loader.LogCategory, "Unable to find plugins: " + e.Message);
+                Log.DebuggerWrite(3, Loader.LogCategory, "Unable to find plugins: " + e.Message);
                 return new string[0];
             }
         }

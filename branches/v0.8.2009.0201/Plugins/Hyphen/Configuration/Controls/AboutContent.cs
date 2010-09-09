@@ -16,14 +16,10 @@
 \***********************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 using Virtuoso.Miranda.Plugins.Configuration.Forms.Controls;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace Virtuoso.Hyphen.Configuration.Controls
 {
@@ -38,7 +34,12 @@ namespace Virtuoso.Hyphen.Configuration.Controls
         {
             if (firstTime)
             {
-                VersionLABEL.Text = String.Format("v{0}", GetType().Assembly.GetName().Version);
+                Assembly assembly = GetType().Assembly;
+
+                VersionLABEL.Text = String.Format("v{0}", assembly.GetName().Version);
+                HomepageLINK.Text =
+                    ((AssemblyCopyrightAttribute)
+                     assembly.GetCustomAttributes(typeof (AssemblyCopyrightAttribute), false)[0]).Copyright;
             }
 
             return false;
