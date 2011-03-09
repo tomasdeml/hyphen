@@ -1,0 +1,12 @@
+THREAD SYNCHRONIZATION ===
+=============================================================================
+- If there is a SynchronizationSupervisor::BeginXXXUpdate() method,
+  then this method should be used to lock on a XXX variable type instead 
+  of the lock statement
+  - for example, if there is a BeginDescriptorUpdate() method, then 
+    you should use this method to lock on a Descriptor typed variable
+- If there is no associated method in the SynchronizationSupervisor class,
+  then the lock statement should be used instead
+- Previous two recomendations were introduced to ensure the coding consistency
+  in the thread synchronization on types being frequently passed as arguments
+  
