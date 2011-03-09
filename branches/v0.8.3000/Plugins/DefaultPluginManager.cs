@@ -95,7 +95,6 @@ namespace Virtuoso.Miranda.Plugins
                 DeclareInitialized();
                 RaiseFusionCompletedEvent(EventArgs.Empty);
 
-                Infrastructure.PluginConfiguration.FlushCaches();
                 Log.DebuggerWrite(0, LogCategory, "Fusion completed.");
             }
         }

@@ -16,8 +16,6 @@
 \***********************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using Virtuoso.Miranda.Plugins.Infrastructure;
 
@@ -29,5 +27,6 @@ namespace Virtuoso.Miranda.Plugins.Configuration
         Stream OpenWrite(Type configType, ConfigurationOptionsAttribute options);
 
         bool Exists(Type configType, ConfigurationOptionsAttribute options);
+        void Delete(Type configType, ConfigurationOptionsAttribute options);
     }
 }

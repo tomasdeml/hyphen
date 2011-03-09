@@ -249,10 +249,6 @@ namespace Virtuoso.Hyphen.Mini
             {
                 DefaultExceptionHandler.Create(PluginDescriptor.Plugin).HandleException(ex, PluginDescriptor);
             }
-            finally
-            {
-                PluginConfiguration.FlushCaches();
-            }
         }
 
         /// <summary>

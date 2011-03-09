@@ -17,11 +17,9 @@
 
 using System;
 using System.IO;
-using System.IO.IsolatedStorage;
 using System.Runtime.Serialization.Formatters.Binary;
 using Virtuoso.Miranda.Plugins.Collections;
 using Virtuoso.Miranda.Plugins.Configuration;
-using Virtuoso.Miranda.Plugins.Helpers;
 using Virtuoso.Miranda.Plugins.Resources;
 
 namespace Virtuoso.Miranda.Plugins.Infrastructure
@@ -33,20 +31,13 @@ namespace Virtuoso.Miranda.Plugins.Infrastructure
 
         private static readonly object SyncObject = new object();
 
-        private static readonly TypeInstanceCache<IStorage> Stores = new TypeInstanceCache<IStorage>();
-        private static readonly TypeInstanceCache<IEncryption> Encryptions = new TypeInstanceCache<IEncryption>();
-
-        internal readonly ConfigurationValues values;
-
-        private bool isDirty;
-
         #endregion
 
         #region .ctors
 
         protected PluginConfiguration()
         {
-            values = new ConfigurationValues();
+            Values = new ConfigurationValues();
         }
 
         protected virtual void InitializeDefaultConfiguration() { }
@@ -68,24 +59,11 @@ namespace Virtuoso.Miranda.Plugins.Infrastructure
 
         #region Properties
 
-        public ConfigurationValues Values
-        {
-            get
-            {
-                return values;
-            }
-        }
+        public ConfigurationValues Values { get; private set; }
 
         public bool IsDirty
         {
-            get
-            {
-                return isDirty;
-            }
-            protected internal set
-            {
-                isDirty = value;
-            }
+            get; protected internal set;
         }
 
         #endregion
@@ -109,7 +87,7 @@ namespace Virtuoso.Miranda.Plugins.Infrastructure
             if (configType == null)
                 throw new ArgumentNullException("configType");
 
-            ConfigurationOptionsAttribute options = null;
+            ConfigurationOptionsAttribute options;
             Type configAttribType = typeof(ConfigurationOptionsAttribute);
 
             if (configType.IsDefined(configAttribType, false))
@@ -117,7 +95,7 @@ namespace Virtuoso.Miranda.Plugins.Infrastructure
             else
                 options = new ConfigurationOptionsAttribute();
 
-            return options.Finalize();
+            return options.Initialize();
         }
 
         private static byte[] FetchStream(Stream stream)
@@ -136,18 +114,6 @@ namespace Virtuoso.Miranda.Plugins.Infrastructure
             return buffer;
         }
 
-        internal static void FlushCaches()
-        {
-            lock (SyncObject)
-            {
-                foreach (IStorage storage in Stores.Values)
-                    storage.Dispose();
-
-                Stores.Clear();
-                Encryptions.Clear();
-            }
-        }
-
         #endregion
 
         #region Save
@@ -161,17 +127,42 @@ namespace Virtuoso.Miranda.Plugins.Infrastructure
                     OnBeforeSerialization();
 
                     ConfigurationOptionsAttribute options = GetOptions(GetType());
-                    IStorage storage = Stores.Instantiate(options.Storage);
 
-                    if (options.Encrypt)
-                        SerializeEncrypted(storage, options);
-                    else
-                        Serialize(storage, options);
+                    using (IStorage storage = (IStorage) Activator.CreateInstance(options.Storage))
+                    {
+                        if (options.Encrypt)
+                            SerializeEncrypted(storage, options);
+                        else
+                            Serialize(storage, options);
+                    }
                 }
             }
-            catch (IsolatedStorageException isE)
+            catch (Exception e)
             {
-                throw new ConfigurationException(TextResources.ExceptionMsg_UnableToSaveConfiguration_StorageError, isE);
+                throw new ConfigurationException(TextResources.ExceptionMsg_UnableToSaveConfiguration_StorageError, e);
+            }
+        }
+
+        public void Delete()
+        {
+            Delete(GetType());
+        }
+
+        public static void Delete(Type configType)
+        {
+            try
+            {
+                lock (SyncObject)
+                {
+                    ConfigurationOptionsAttribute options = GetOptions(configType);
+
+                    using (IStorage storage = (IStorage) Activator.CreateInstance(options.Storage))
+                        storage.Delete(configType, options);
+                }
+            }
+            catch (Exception)
+            {
+                // No need to handle
             }
         }
 
@@ -185,7 +176,7 @@ namespace Virtuoso.Miranda.Plugins.Infrastructure
 
         private void SerializeEncrypted(IStorage storage, ConfigurationOptionsAttribute options)
         {
-            IEncryption encryption = Encryptions.Instantiate(options.Encryption);
+            IEncryption encryption = (IEncryption) Activator.CreateInstance(options.Encryption);
 
             using (Stream serializationStream = new MemoryStream(2048))
             {
@@ -204,31 +195,31 @@ namespace Virtuoso.Miranda.Plugins.Infrastructure
 
         #region Load
 
-        public static T Load<T>() where T : PluginConfiguration
+        public static TConfig Load<TConfig>() where TConfig : PluginConfiguration
+        {
+            return (TConfig) Load(typeof (TConfig));
+        }
+
+        public static PluginConfiguration Load(Type configType)
         {
             try
             {
                 lock (SyncObject)
                 {
-                    Type configType = typeof(T);
                     ConfigurationOptionsAttribute options = GetOptions(configType);
 
-                    IStorage storage = Stores.Instantiate(options.Storage);
-
-                    if (!storage.Exists(configType, options))
-                        return GetDefaultConfiguration<T>();
-
-                    using (Stream stream = storage.OpenRead(configType, options))
+                    using (IStorage storage = (IStorage) Activator.CreateInstance(options.Storage))
                     {
-                        T result = null;
+                        if (!storage.Exists(configType, options))
+                            return GetDefaultConfiguration(configType);
 
-                        if (options.Encrypt)
-                            result = DeserializeEncrypted<T>(stream, options);
-                        else
-                            result = Deserialize<T>(stream);
+                        using (Stream stream = storage.OpenRead(configType, options))
+                        {
+                            PluginConfiguration result = options.Encrypt ? DeserializeEncrypted(stream, options) : Deserialize(stream);
+                            result.OnAfterDeserialization();
 
-                        result.OnAfterDeserialization();
-                        return result;
+                            return result;
+                        }
                     }
                 }
             }
@@ -238,30 +229,53 @@ namespace Virtuoso.Miranda.Plugins.Infrastructure
             }
             catch (Exception e)
             {
-                T defaults = GetDefaultConfiguration<T>();
+                PluginConfiguration defaults = GetDefaultConfiguration(configType);
                 defaults.Save();
 
                 throw new ConfigurationException(TextResources.ExceptionMsg_UnableToLoadConfiguration_StorageError, e);
             }
         }
 
-        private static T Deserialize<T>(Stream stream) where T : PluginConfiguration
+        public static bool Exists(Type configType)
         {
-            return new BinaryFormatter().Deserialize(stream) as T;
+            try
+            {
+                lock (SyncObject)
+                {
+                    ConfigurationOptionsAttribute options = GetOptions(configType);
+
+                    using (IStorage storage = (IStorage)Activator.CreateInstance(options.Storage))
+                        return storage.Exists(configType, options);
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            } 
         }
 
-        private static T DeserializeEncrypted<T>(Stream stream, ConfigurationOptionsAttribute options) where T : PluginConfiguration
+        private static PluginConfiguration Deserialize(Stream stream)
+        {
+            return new BinaryFormatter().Deserialize(stream) as PluginConfiguration;
+        }
+
+        private static PluginConfiguration DeserializeEncrypted(Stream stream, ConfigurationOptionsAttribute options)
         {
             byte[] protectedData = FetchStream(stream);
-            byte[] data = Encryptions.Instantiate(options.Encryption).Decrypt(protectedData);
+            byte[] data = ((IEncryption) Activator.CreateInstance(options.Encryption)).Decrypt(protectedData);
 
             using (Stream serializedStream = new MemoryStream(data))
-                return new BinaryFormatter().Deserialize(serializedStream) as T;
+                return new BinaryFormatter().Deserialize(serializedStream) as PluginConfiguration;
         }
 
         public static TConfig GetDefaultConfiguration<TConfig>() where TConfig : PluginConfiguration
         {
-            TConfig result = Activator.CreateInstance(typeof(TConfig), true) as TConfig;
+            return (TConfig) GetDefaultConfiguration(typeof (TConfig));
+        }
+
+        public static PluginConfiguration GetDefaultConfiguration(Type configType)
+        {
+            PluginConfiguration result = Activator.CreateInstance(configType, true) as PluginConfiguration;
 
             if (result == null)
                 throw new ConfigurationException();

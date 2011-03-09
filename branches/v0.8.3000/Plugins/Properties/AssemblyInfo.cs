@@ -20,7 +20,6 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System;
 using System.Security.Permissions;
-using System.Security;
 
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, Flags = SecurityPermissionFlag.ControlAppDomain | SecurityPermissionFlag.ControlDomainPolicy | SecurityPermissionFlag.ControlThread | SecurityPermissionFlag.Execution | SecurityPermissionFlag.UnmanagedCode)]
 
@@ -37,9 +36,9 @@ using System.Security;
 // ************************************************ //
 // !! CHANGE THE CONFIG FILE + .MINI VERSION TOO !!!
 // ************************************************ //
-// x.x.YYYY.MMDD
-[assembly: AssemblyVersion("0.8.3000." /* !!! CONFIG !!! */ + "00909" )] 
-[assembly: AssemblyFileVersion("0.8.3000.00909")]
+// x.x.xxxx.YMMDD
+[assembly: AssemblyVersion("0.8.3000." /* !!! CONFIG !!! */ + "10309" )] 
+[assembly: AssemblyFileVersion("0.8.3000.10309")]
 
 [assembly: InternalsVisibleTo("Virtuoso.Hyphen.Mini, PublicKey=00240000048000009400000006020000002400005253413100040000010001005d9bd3582d0c01dcd54854ac2f36c94f7bef235b2e2b5479248efddd65431bceef6c92d759d7f23f3692704cd18f0c5b7ee3436a0f7b9b2eaf8fbf205b85150d171a0fbb7658fb50c1531f6eee3ec70239ae38ac383dd742a754691c965cc23cd716618b8c89b25ca04402ea4a579a66bdf50335e4b6d2b0c72bd183328487b5")]
 [assembly: InternalsVisibleTo("Virtuoso.Miranda.Plugins.UnitTests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100190e0cd0962bfe7835b22be43ce49acd109d5d0c0512534f74aaf01fcdb7712fca7b81b5048a51a43750fa8de5c168628c2e4f90acf43559bc328024265df53d5b21a61720c3be75e9a3b15046a4b0892f60a215e1cb8db467d84d2626100e7390a929f35b53c4f853d2523cfe87d484246ddf446c1849c6b5e430b12cc0b6aa")]
@@ -52,7 +51,7 @@ using System.Security;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("virtuoso")]
 [assembly: AssemblyProduct("Virtuoso.Hyphen")]
-[assembly: AssemblyCopyright("© 2006-2010, virtuoso")]
+[assembly: AssemblyCopyright("© 2006-2011, virtuoso")]
 [assembly: AssemblyTrademark("virtuoso")]
 [assembly: AssemblyCulture("")]
 
