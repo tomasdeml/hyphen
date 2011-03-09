@@ -16,8 +16,6 @@
 \***********************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Virtuoso.Miranda.Plugins.Infrastructure;
 using System.IO;
 
@@ -25,12 +23,6 @@ namespace Virtuoso.Miranda.Plugins.Configuration
 {
     public abstract class StorageBase : IStorage
     {
-        #region .ctors
-
-        protected StorageBase() { }
-
-        #endregion			
-        
         #region Helpers
 
         protected virtual string GetFileName(Type configType, ConfigurationOptionsAttribute options)
@@ -38,18 +30,22 @@ namespace Virtuoso.Miranda.Plugins.Configuration
             if (configType == null)
                 throw new ArgumentNullException("configType");
 
-            string versionSuffix = options != null && options.Version != null ?
-                options.Version.ToString() : String.Empty;
+            if (options == null)
+                throw new ArgumentNullException("options");
 
+            string versionSuffix = (options.Version != null ? options.Version.ToString() : String.Empty);
             string profileBoundSuffix = String.Empty;
 
-            if (options != null && options.ProfileBound)
+            if (options.ProfileBound)
             {
                 if (!MirandaContext.Initialized)
                     throw new InvalidOperationException();
 
                 profileBoundSuffix = Path.GetFileNameWithoutExtension(MirandaContext.Current.MirandaDatabase.ProfileName);
             }
+
+            if (!String.IsNullOrEmpty(options.StaticFileName))
+                return options.StaticFileName;
 
             return String.Format("{0}_{1}_{2}", configType.FullName, versionSuffix, profileBoundSuffix).Replace('.', '-') + ".dat";
         }
@@ -63,6 +59,8 @@ namespace Virtuoso.Miranda.Plugins.Configuration
         public abstract Stream OpenWrite(Type configType, ConfigurationOptionsAttribute options);
 
         public abstract bool Exists(Type configType, ConfigurationOptionsAttribute options);
+
+        public abstract void Delete(Type configType, ConfigurationOptionsAttribute options);
 
         public abstract void Dispose();
 

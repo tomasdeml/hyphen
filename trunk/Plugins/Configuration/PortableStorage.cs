@@ -16,8 +16,6 @@
 \***********************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using Virtuoso.Miranda.Plugins.Infrastructure;
 
@@ -54,6 +52,14 @@ namespace Virtuoso.Miranda.Plugins.Configuration
         public override bool Exists(Type configType, ConfigurationOptionsAttribute options)
         {
             return File.Exists(GetPath(configType, options));
+        }
+
+        public override void Delete(Type configType, ConfigurationOptionsAttribute options)
+        {
+            string path = GetPath(configType, options);
+
+            if (File.Exists(path))
+                File.Delete(path);
         }
 
         public override void Dispose() { }

@@ -16,8 +16,6 @@
 \***********************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Virtuoso.Miranda.Plugins.Configuration;
 
 namespace Virtuoso.Miranda.Plugins.Infrastructure
@@ -38,61 +36,42 @@ namespace Virtuoso.Miranda.Plugins.Infrastructure
         public ConfigurationOptionsAttribute(string configurationVersion, bool encrypt, bool profileBound)
         {
             if (!String.IsNullOrEmpty(configurationVersion))
-                this.version = new Version(configurationVersion);
+                Version = new Version(configurationVersion);
 
-            this.encrypt = encrypt;
-            this.profileBound = profileBound;
+            Encrypt = encrypt;
+            ProfileBound = profileBound;
         }
 
         #endregion
 
         #region Properties
 
-        private readonly Version version;
         public Version Version
         {
-            get { return version; }
+            get; private set;
         }
 
-        private bool profileBound;
-        public bool ProfileBound
-        {
-            get { return profileBound; }
-            set { profileBound = value; }
-        }
+        public bool ProfileBound { get; set; }
 
-        private bool encrypt;
-        public bool Encrypt
-        {
-            get { return encrypt; }
-            set { encrypt = value; }
-        }
+        public bool Encrypt { get; set; }
 
-        private Type storage;
-        public Type Storage
-        {
-            get { return storage; }
-            set { storage = value; }
-        }
+        public Type Storage { get; set; }
 
-        private Type encryption;
-        public Type Encryption
-        {
-            get { return encryption; }
-            set { encryption = value; }
-        }
+        public Type Encryption { get; set; }
+
+        public string StaticFileName { get; set; }
 
         #endregion
 
         #region Methods
 
-        internal ConfigurationOptionsAttribute Finalize()
+        internal ConfigurationOptionsAttribute Initialize()
         {
-            if (storage == null)
-                storage = typeof(IsolatedStorage);
+            if (Storage == null)
+                Storage = typeof(IsolatedStorage);
 
-            if (encrypt && encryption == null)
-                encryption = typeof(WindowsEncryption);
+            if (Encrypt && Encryption == null)
+                Encryption = typeof(WindowsEncryption);
 
             return this;
         }

@@ -16,11 +16,8 @@
 \***********************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using Virtuoso.Miranda.Plugins.Infrastructure;
-using FxIsolatedStorage = System.IO.IsolatedStorage.IsolatedStorage;
 using System.IO.IsolatedStorage;
 
 namespace Virtuoso.Miranda.Plugins.Configuration
@@ -63,6 +60,15 @@ namespace Virtuoso.Miranda.Plugins.Configuration
         public override bool Exists(Type configType, ConfigurationOptionsAttribute options)
         {
             return Store.GetFileNames(GetFileName(configType, options)).Length != 0;
+        }
+
+        public override void Delete(Type configType, ConfigurationOptionsAttribute options)
+        {
+            if (!Exists(configType, options))
+                return;
+
+            string path = GetFileName(configType, options);
+            Store.DeleteFile(path);
         }
 
         public override void Dispose()
